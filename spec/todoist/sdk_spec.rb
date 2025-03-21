@@ -22,7 +22,26 @@ RSpec.describe Todoist::SDK do
       response = Todoist::SDK.projects 
       expect(response.body).to be_a(Array)
 
-      pp Todoist::SDK::projects.body
+      pp response.body
     end
+  end
+
+  describe "#tasks" do 
+  let(:first_project) {
+    Todoist::SDK.projects.body.first
+  }
+    it 'returns a response with a status code of 200' do 
+      response = Todoist::SDK.tasks(first_project["id"])
+
+      expect(response.status).to eq(200)
+    end
+
+    it 'returns the projects' do 
+      response = Todoist::SDK.tasks(first_project["id"])
+      expect(response.body).to be_a(Array)
+
+      pp response.body
+    end
+     
   end
 end
