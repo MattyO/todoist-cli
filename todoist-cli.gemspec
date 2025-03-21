@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "lib/todoist/cli/version"
+require_relative "lib/todoist/sdk/version"
 
 Gem::Specification.new do |spec|
   spec.name = "todoist-cli"
-  spec.version = Todoist::Cli::VERSION
+  spec.version = Todoist::SDK::VERSION
   spec.authors = ["Matt ODonnell"]
   spec.email = ["matt.odonnell@leandog.com"]
 
