@@ -20,15 +20,14 @@ RSpec.describe Todoist::SDK do
 
     it 'returns the projects' do
       response = Todoist::SDK.projects
-      pp response.body['results']
-      expect(response.body['results']).to be_a(Array)
+      expect(response.data).to be_a(Array)
 
     end
   end
 
   describe "#tasks" do
   let(:first_project) {
-    Todoist::SDK.projects.body.first
+    Todoist::SDK.projects.data.first
   }
     it 'returns a response with a status code of 200' do
       response = Todoist::SDK.tasks(first_project["id"])
@@ -38,10 +37,8 @@ RSpec.describe Todoist::SDK do
 
     it 'returns the projects' do
       response = Todoist::SDK.tasks(first_project["id"])
-      expect(response.body).to be_a(Array)
+      expect(response.data).to be_a(Array)
 
-      pp response.body
     end
-
   end
 end
