@@ -10,29 +10,27 @@ module Todoist
     API_TOKEN=ENV['API_TOKEN']
 
     def self.projects
-      puts 'token value'
-      puts API_TOKEN
-      connection = Faraday.new('https://api.todoist.com/api/v1', headers: { 'Authorization' => "Bearer #{API_TOKEN}"} ) do |f|
-        f.response :json
-      end
-
       response = connection.get('projects')
-      OpenStruct.new(
-        status: response.status,
-        data: response.body.fetch('results', [])
-      )
+
+      sdk_response(response)
     end
 
     def self.tasks(project_id)
-      connection = Faraday.new('https://api.todoist.com/api/v1', headers: { 'Authorization' => "Bearer #{API_TOKEN}"} ) do |f|
-        f.response :json
-      end
-
       response = connection.get('tasks', project_id: project_id)
 
+      sdk_response(response)
+    end
+
+    def self.connection
+      Faraday.new('https://api.todoist.com/api/v1', headers: { 'Authorization' => "Bearer #{API_TOKEN}"} ) do |f|
+        f.response :json
+      end
+    end
+
+    def self.sdk_response(faraday_response)
       OpenStruct.new(
-        status: response.status,
-        data: response.body.fetch('results', [])
+        status: faraday_response.status,
+        data: faraday_response.body.fetch('results', [])
       )
     end
 
