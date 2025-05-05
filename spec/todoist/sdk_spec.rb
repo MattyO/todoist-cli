@@ -5,43 +5,43 @@ RSpec.describe Todoist::SDK do
     expect(Todoist::SDK::VERSION).not_to be nil
   end
 
-  it 'loads the todist api token automaticly' do 
+  it 'loads the todist api token automaticly' do
     expect(Todoist::SDK::API_TOKEN).to be_a(String)
 
-    #delete me later when we figure out a better way to do this.  
+    #delete me later when we figure out a better way to do this.
     expect(Todoist::SDK::API_TOKEN.length).not_to eq(0)
   end
 
-  describe '#projects' do 
-    it 'returns a response with a status code of 200' do 
+  describe '#projects' do
+    it 'returns a response with a status code of 200' do
       response = Todoist::SDK.projects
       expect(response.status).to eq(200)
     end
 
-    it 'returns the projects' do 
-      response = Todoist::SDK.projects 
-      expect(response.body).to be_a(Array)
+    it 'returns the projects' do
+      response = Todoist::SDK.projects
+      pp response.body['results']
+      expect(response.body['results']).to be_a(Array)
 
-      pp response.body
     end
   end
 
-  describe "#tasks" do 
+  describe "#tasks" do
   let(:first_project) {
     Todoist::SDK.projects.body.first
   }
-    it 'returns a response with a status code of 200' do 
+    it 'returns a response with a status code of 200' do
       response = Todoist::SDK.tasks(first_project["id"])
 
       expect(response.status).to eq(200)
     end
 
-    it 'returns the projects' do 
+    it 'returns the projects' do
       response = Todoist::SDK.tasks(first_project["id"])
       expect(response.body).to be_a(Array)
 
       pp response.body
     end
-     
+
   end
 end
