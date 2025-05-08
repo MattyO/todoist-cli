@@ -12,3 +12,5 @@ gem "rspec", "~> 3.0"
 gem 'dotenv', '~> 2.8', '>= 2.8.1'
 gem "standard", "~> 1.3"
 gem "faraday"
+
+gem 'todoist', path: 'vendor/bundle/todoist'
