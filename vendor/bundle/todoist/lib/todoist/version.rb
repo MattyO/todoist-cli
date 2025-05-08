@@ -9,5 +9,5 @@
 #
 
 module Todoist
-  VERSION = "1.0.0"
+  VERSION = "2025.05.08"
 end
