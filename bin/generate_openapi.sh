@@ -1,5 +1,5 @@
 docker run \
-  -v $(pwd)/openapi.json:/working/openapi.json \
+  -v $(pwd)/lib/todoist/openapi.json:/working/openapi.json \
   -v $(pwd)/vendor/bundle/todoist:/generated \
   openapitools/openapi-generator-cli \
   generate \
